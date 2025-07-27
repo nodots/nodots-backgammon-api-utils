@@ -32,9 +32,7 @@
     "prepare": "npm run build",
     "publish:npm": "npm publish --access public"
   },
-  "dependencies": {
-    "@nodots-llc/backgammon-types": "*"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@eslint/js": "^9.2.0",
     "@types/jest": "^29.5.14",
@@ -46,7 +44,5 @@
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.23.0"
   },
-  "peerDependencies": {
-    "@nodots-llc/backgammon-types": "^3.6.0"
-  }
+  "peerDependencies": {}
 }
