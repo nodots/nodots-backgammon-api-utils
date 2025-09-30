@@ -1,22 +1,10 @@
-// Re-export request types
-export * from './requests'
+export interface ApiResponse<T = any> {
+  success: boolean
+  data?: T
+  error?: string
+  message?: string
+}
 
-// Re-export response types
-export * from './responses'
-
-// Re-export WebSocket event types
-export * from './websocket'
-
-// Re-export user and auth types
-export * from './users'
-
-// Specific exports for clarity
-export type { BackgammonGamePreferences, GamePreferences } from './users'
-
-// Import ApiResponse for use in helper functions
-import { ApiResponse } from './responses'
-
-// Legacy response types (kept for backwards compatibility)
 export interface ApiErrorResponse {
   success: false
   error: string
@@ -28,7 +16,6 @@ export interface ApiSuccessResponse<T = any> {
   data: T
 }
 
-// Helper functions
 export function createSuccessResponse<T>(data: T): ApiSuccessResponse<T> {
   return {
     success: true,

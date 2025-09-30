@@ -18,6 +18,7 @@ export type BackgammonGamePreferences = {
     diceAutoRoll: boolean;
     boardTheme?: string;
     showMoveHints?: boolean;
+    aiEngine?: string;
 };
 /**
  * All game preferences organized by game type

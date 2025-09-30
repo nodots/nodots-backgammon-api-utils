@@ -61,4 +61,50 @@ export interface ApiResponse<T = any> {
     error?: string;
     message?: string;
 }
+/**
+ * WebSocket Event Types
+ *
+ * These types define the events sent via WebSocket connections
+ */
+/**
+ * Base event structure
+ */
+export interface WebSocketEvent<T = any> {
+    type: string;
+    gameId: string;
+    data: T;
+    timestamp: Date;
+}
+/**
+ * Game state update event
+ */
+export interface GameStateUpdateEvent extends WebSocketEvent<SerializedBackgammonGame> {
+    type: 'game-state-update';
+}
+/**
+ * Game updated event (general updates)
+ */
+export interface GameUpdatedEvent extends WebSocketEvent<SerializedBackgammonGame> {
+    type: 'game-updated';
+}
+/**
+ * Move made event
+ */
+export interface MoveMadeEvent extends WebSocketEvent<{
+    game: SerializedBackgammonGame;
+    move: BackgammonMove;
+    playerId: string;
+}> {
+    type: 'move-made';
+}
+/**
+ * Game completed event
+ */
+export interface GameCompletedEvent extends WebSocketEvent<{
+    game: SerializedBackgammonGame;
+    winnerId: string;
+    reason: string;
+}> {
+    type: 'game-completed';
+}
 //# sourceMappingURL=responses.d.ts.map
