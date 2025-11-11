@@ -35,8 +35,10 @@
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
     "clean": "rm -rf dist coverage",
+    "prebuild": "npm run clean",
     "prepare": "npm run build",
-    "publish:npm": "npm publish --access public --provenance"
+    "release": "npm run build && npm publish",
+    "publish:dry-run": "npm run build && npm publish --dry-run"
   },
   "dependencies": {
     "@nodots-llc/backgammon-types": "^4.6.0"
