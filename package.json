@@ -39,7 +39,7 @@
     "publish:npm": "npm publish --access public --provenance"
   },
   "dependencies": {
-    "@nodots-llc/backgammon-types": "../types"
+    "@nodots-llc/backgammon-types": "^4.6.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.2.0",
