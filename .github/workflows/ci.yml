@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main, development]
+  pull_request:
+    branches: [main, development]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      # Without this, the first version to fail cancels the other, and the
+      # cancelled job reports as a failure even when its own steps passed.
+      fail-fast: false
+      matrix:
+        node-version: [20, 22]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Compilation is the only check this package can currently offer: it has
+      # no test files at all (jest reports 0 matches across 33 files), and the
+      # `lint` script has no eslint config to run against. Building still
+      # catches the failure mode that took core and ai down -- a types release
+      # that no longer carries a symbol this package uses.
+      - name: Build
+        run: npm run build
